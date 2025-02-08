@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src *; script-src 'self'" />
+    <title>yt-dlp_gui</title>
+    <link href="./build.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-[#0f0f0f] overflow-hidden">
+    <div class="flex items-end justify-end m-6">
+      <button id="pathBtn" class="bg-[#272727] text-white rounded-2xl p-2 cursor-pointer">Change Path</button>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="text-5xl text-gray-200 text-center mt-8">Download videos</h1>
+      <input id="input" placeholder="Input video URL" value="" class="bg-white rounded-3xl w-xl mt-5 h-12 p-5" />
+      <button id="searchBtn" class="bg-[#272727] text-white text-lg rounded-xl p-1 px-2 cursor-pointer mx-46 mt-3.5">Search</button>
+      <div class="flex flex-col w-120 mt-5 mb-5">
+        <img id="video-thumbnail" class="h-auto" src="" />
+        <p id="video-title" class="text-center text-white font-bold text-lg mt-1"></p>
+        <p id="video-duration" class="text-center text-gray-400"></p>
+      </div>
+      <div id="downloadDiv" class="hidden flex-row items-center justify-between">
+        <select id="quality" class="bg-[#272727] text-white rounded-2xl p-2 mt-2 cursor-pointer">
+          <option value="144">144p</option>
+          <option value="240">240p</option>
+          <option value="360">360p</option>
+          <option value="480">480p</option>
+          <option value="720">720p</option>
+          <option value="1080" selected>1080p</option>
+          <option value="1440">1440p</option>
+          <option value="2160">2160p</option>
+        </select>
+
+        <button id="dlBtn" class="bg-[#272727] text-white text-lg rounded-2xl p-1 px-2 cursor-pointer mt-1 mx-40">Download</button>
+        <button id="quitBtn" class="bg-[#272727] text-red-600 rounded-2xl p-1 px-2 cursor-pointer mr-12">■</button>
+      </div>
+    </div>
+
+    <div id="eta" class="text-xl text-white flex flex-row justify-center items-center mt-18"></div>
+    <div id="progress" class="text-xl text-white flex flex-row justify-center items-center"></div>
+
+    <script src="../renderer.js"></script>
+  </body>
+</html>
