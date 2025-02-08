@@ -1,10 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
-const fs = require('fs');
 const { handleDownload, forceQuitDownload } = require('./ipc/downloadHandler');
 const { handlePathChange } = require('./ipc/pathChangeHandler');
 const { handleYtdlpCheck } = require('./ipc/checkHandler');
 const { searchVideo } = require('./ipc/searchVideo');
+const { open } = require('./ipc/openHandler');
 const { checkDataPath } = require('./utils/dataStore.js');
 
 checkDataPath();
@@ -28,6 +28,7 @@ ipcMain.on('search', searchVideo);
 ipcMain.on('force-quit', forceQuitDownload);
 ipcMain.on('changePath', handlePathChange);
 ipcMain.on('start', handleYtdlpCheck);
+ipcMain.on('open', open);
 
 app.whenReady().then(() => {
   createWindow();

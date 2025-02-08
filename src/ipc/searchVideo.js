@@ -11,8 +11,9 @@ const searchVideo = async (event, value) => {
   if (!fs.existsSync('info.txt')) {
     fs.writeFileSync('info.txt', '');
   }
+  const cleanedFromPlaylist = value.replace(/&list=.*/, '');
   const command = 'yt-dlp';
-  const args = ['--print-to-file', '%(thumbnail)s\n%(title)s\n%(duration)s', 'info.txt', value, '--skip-download'];
+  const args = ['--print-to-file', '%(thumbnail)s\n%(title)s\n%(duration)s', 'info.txt', cleanedFromPlaylist, '--skip-download'];
   const process = spawn(command, args);
 
   process.stdout.on('data', (data) => {

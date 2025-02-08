@@ -20,6 +20,13 @@
         <p id="video-title" class="text-center text-white font-bold text-lg mt-1"></p>
         <p id="video-duration" class="text-center text-gray-400"></p>
       </div>
+      <div id="progress-div" class="relative hidden w-[50%] bg-gray-300 rounded-xl h-5 overflow-hidden">
+        <div id="progress-bar" class="bg-green-600 h-full rounded-xl"></div>
+        <span id="progress-text" class="absolute inset-0 flex items-center justify-center text-xs font-bold text-black"></span>
+      </div>
+      <div id="eta" class="font-gray-200 text-white flex flex-row justify-center items-center"></div>
+      <a id="openFolder" class="hidden text-blue-600 underline" href="#">Open Folder</a>
+
       <div id="downloadDiv" class="hidden flex-row items-center justify-between">
         <select id="quality" class="bg-[#272727] text-white rounded-2xl p-2 mt-2 cursor-pointer">
           <option value="144">144p</option>
@@ -36,10 +43,6 @@
         <button id="quitBtn" class="bg-[#272727] text-red-600 rounded-2xl p-1 px-2 cursor-pointer mr-12">■</button>
       </div>
     </div>
-
-    <div id="eta" class="text-xl text-white flex flex-row justify-center items-center mt-18"></div>
-    <div id="progress" class="text-xl text-white flex flex-row justify-center items-center"></div>
-
     <script src="../renderer.js"></script>
   </body>
 </html>

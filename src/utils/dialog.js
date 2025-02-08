@@ -1,6 +1,5 @@
 const { dialog, app } = require('electron');
 const fs = require('fs');
-let dlPath;
 
 const openDialog = async () => {
   await dialog
@@ -20,4 +19,4 @@ const openDialog = async () => {
     });
 };
 
-module.exports = { openDialog, dlPath };
+module.exports = { openDialog };
