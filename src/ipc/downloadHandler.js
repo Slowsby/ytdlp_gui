@@ -7,6 +7,13 @@ let terminated = false;
 let isDownloading = false;
 
 const handleDownload = (event, value, quality) => {
+  if (quality === 'quality') {
+    setTimeout(() => {
+      event.sender.send('eta', '');
+    }, 1000);
+    event.sender.send('eta', 'Please select a quality');
+    return;
+  }
   const cleanedFromPlaylist = value.replace(/&list=.*/, '');
   if (isDownloading) {
     console.log('Download already in progress.');
