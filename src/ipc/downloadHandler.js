@@ -17,7 +17,7 @@ const handleDownload = (event, value, quality) => {
   isDownloading = true;
   console.log('Received input:', value, quality);
   const command = 'yt-dlp';
-  const args = ['-S', `res:${quality},acodec:m4a`, cleanedFromPlaylist, '--no-mtime', '--force-overwrites', '-o', path.join(defaultPath(), '\\%(title)s [%(id)s]')];
+  const args = ['-S', `res:${quality},acodec:m4a`, cleanedFromPlaylist, '--no-mtime', '--force-overwrites', '-o', path.join(defaultPath(), '\\%(title)s [%(id)s].%(ext)s')];
   process = spawn(command, args);
   let cleanedData;
 
