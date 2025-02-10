@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (duration > 0) {
       const hrs = Math.floor(duration / 3600);
       const mins = Math.floor((duration % 3600) / 60);
-      const secs = duration % 60;
+      const secs = Math.floor(duration % 60);
       if (hrs > 0) {
         videoDuration.textContent = `Duration: ${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       } else {
