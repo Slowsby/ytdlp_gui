@@ -63,19 +63,16 @@ const handleDownload = (event, value, quality) => {
 };
 
 const forceQuitDownload = (event) => {
-  event.sender.send('video-title', '');
-  event.sender.send('video-thumbnail', '');
-  event.sender.send('video-duration', '');
   if (process) {
     event.sender.send('eta', '');
     terminated = true;
     clearInterval(intervalId);
     exec('taskkill /F /T /PID ' + process.pid);
+    isDownloading = false;
     console.log('Killed yt-dlp');
     setTimeout(() => {
       event.sender.send('progress', '');
       terminated = false;
-      isDownloading = false;
     }, 2500);
     event.sender.send('progress', 'Terminated download.');
   } else {

@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('node:path');
+const path = require('path');
 const { handleDownload, forceQuitDownload } = require('./ipc/downloadHandler');
 const { handlePathChange } = require('./ipc/pathChangeHandler');
 const { handleYtdlpCheck } = require('./ipc/checkHandler');

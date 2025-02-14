@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld('electron', {
   onVideoTitle: (title) => ipcRenderer.on('video-title', title),
   onVideoThumbnail: (thumbnail) => ipcRenderer.on('video-thumbnail', thumbnail),
   onVideoDuration: (duration) => ipcRenderer.on('video-duration', duration),
+  onVideoQuality: (quality) => ipcRenderer.on('video-quality', quality),
   onEtaProgress: (eta) => ipcRenderer.on('eta', eta),
   start: () => ipcRenderer.send('start')
 });

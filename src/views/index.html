@@ -9,37 +9,53 @@
   </head>
   <body class="min-h-screen bg-[#0f0f0f] overflow-hidden">
     <div class="flex items-end justify-end m-6">
-      <button id="pathBtn" class="bg-[#272727] text-white rounded-2xl p-2 cursor-pointer">Change Path</button>
+      <div class="relative group">
+        <button id="pathBtn" class="bg-[#272626] text-white rounded-2xl cursor-pointer p-2 hover:bg-[#38393a] active:bg-[#232325] focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50" fill="#ffffff">
+            <path
+              d="M 5 4 C 3.3550302 4 2 5.3550302 2 7 L 2 16 L 2 18 L 2 43 C 2 44.64497 3.3550302 46 5 46 L 45 46 C 46.64497 46 48 44.64497 48 43 L 48 19 L 48 16 L 48 11 C 48 9.3550302 46.64497 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.56503 10 46 10.43497 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4349698 4.4349698 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 19 L 46 43 C 46 43.56503 45.56503 44 45 44 L 5 44 C 4.4349698 44 4 43.56503 4 43 L 4 18 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"
+            ></path>
+          </svg>
+        </button>
+        <div class="absolute hidden group-hover:block text-white rounded-md whitespace-nowrap right-0">Change Path</div>
+      </div>
     </div>
     <div class="flex flex-col items-center justify-center">
-      <h1 class="text-5xl text-gray-200 text-center mt-8">Download videos</h1>
-      <input id="input" placeholder="Input video URL" value="" class="bg-white rounded-3xl w-xl mt-5 h-12 p-5" />
-      <button id="searchBtn" class="bg-[#272727] text-white text-lg rounded-xl p-1 px-2 cursor-pointer mx-46 mt-3.5">Search</button>
+      <h1 class="text-4xl text-gray-200 text-center mt-8">Search videos</h1>
+      <div class="relative">
+        <svg id="searchBtn" class="absolute inset-y-0 start-0 flex mt-8 ml-[34rem] cursor-pointer" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 612.08 612.08">
+          <path
+            d="M237.927,0C106.555,0,0.035,106.52,0.035,237.893c0,131.373,106.52,237.893,237.893,237.893
+              c50.518,0,97.368-15.757,135.879-42.597l0.028-0.028l176.432,176.433c3.274,3.274,8.48,3.358,11.839,0l47.551-47.551
+              c3.274-3.274,3.106-8.703-0.028-11.838L433.223,373.8c26.84-38.539,42.597-85.39,42.597-135.907C475.82,106.52,369.3,0,237.927,0z
+              M237.927,419.811c-100.475,0-181.918-81.443-181.918-181.918S137.453,55.975,237.927,55.975s181.918,81.443,181.918,181.918
+              S338.402,419.811,237.927,419.811z"
+          />
+        </svg>
+        <input id="input" placeholder="Input video URL" value="" class="bg-white rounded-3xl w-xl mt-5 h-12 p-5" />
+      </div>
       <div class="flex flex-col w-120 mt-5 mb-5">
-        <img id="video-thumbnail" class="h-auto" src="" />
+        <img id="video-thumbnail" class="h-[50%]" src="" />
         <p id="video-title" class="text-center text-white font-bold text-lg mt-1"></p>
         <p id="video-duration" class="text-center text-gray-400"></p>
       </div>
-      <div id="progress-div" class="relative hidden w-[50%] bg-gray-300 rounded-xl h-5 overflow-hidden">
-        <div id="progress-bar" class="bg-green-600 h-full rounded-xl"></div>
-        <span id="progress-text" class="absolute inset-0 flex items-center justify-center text-xs font-bold text-black"></span>
+      <div id="progress-div" class="hidden flex-row w-full items-center justify-center">
+        <div class="relative flex w-[40%] bg-gray-300 rounded-xl h-5 overflow-hidden">
+          <div id="progress-bar" class="bg-green-600 h-full rounded-xl"></div>
+          <span id="progress-text" class="absolute inset-0 flex items-center justify-center text-xs font-bold text-black ml-7">Complete.</span>
+        </div>
+        <div class="relative group">
+          <button id="quitBtn" class="bg-[#272727] text-red-600 rounded-2xl p-1 px-2 cursor-pointer ml-1 hover:bg-[#38393a] active:bg-[#232325]">■</button>
+          <div class="absolute hidden group-hover:block text-white rounded-md whitespace-nowrap">Cancel Download</div>
+        </div>
       </div>
       <div id="eta" class="font-gray-200 text-white flex flex-row justify-center items-center"></div>
       <a id="openFolder" class="hidden text-blue-600 underline" href="#">Open Folder</a>
 
-      <div id="downloadDiv" class="hidden flex-row items-center justify-between">
-        <select id="quality" class="bg-[#272727] text-white rounded-2xl p-2 mt-2 cursor-pointer">
-          <option value="quality" selected>Quality</option>
-          <option value="360">360p</option>
-          <option value="480">480p</option>
-          <option value="720">720p</option>
-          <option value="1080">1080p</option>
-          <option value="1440">1440p</option>
-          <option value="2160">2160p</option>
+      <div id="downloadDiv" class="hidden flex-col items-center justify-between">
+        <select id="quality" class="bg-[#272727] text-white rounded-2xl p-2 cursor-pointer hover:bg-[#38393a] active:bg-[#232325] focus:outline-none">
+          <option value="download" selected>Download</option>
         </select>
-
-        <button id="dlBtn" class="bg-[#272727] text-white text-lg rounded-2xl p-1 px-2 cursor-pointer mt-1 mx-40">Download</button>
-        <button id="quitBtn" class="bg-[#272727] text-red-600 rounded-2xl p-1 px-2 cursor-pointer mr-12">■</button>
       </div>
     </div>
     <script src="../renderer.js"></script>
