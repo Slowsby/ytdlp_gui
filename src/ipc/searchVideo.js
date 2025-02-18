@@ -1,6 +1,8 @@
 const { spawn, exec } = require('node:child_process');
 const fs = require('fs');
+const { currentOS } = require('../utils/osCheck.js');
 
+const command = currentOS() === 'win32' ? 'yt-dlp' : './yt-dlp';
 const searchVideo = async (event, value) => {
   event.sender.send('video-thumbnail', '');
   event.sender.send('video-duration', '');
@@ -12,7 +14,6 @@ const searchVideo = async (event, value) => {
     fs.writeFileSync('info.txt', '');
   }
   const cleanedFromPlaylist = value.replace(/&list=.*/, '');
-  const command = 'yt-dlp';
   const args = ['--print-to-file', '%(thumbnail)s\n%(title)s\n%(duration)s', 'info.txt', cleanedFromPlaylist, '--skip-download'];
   const process = spawn(command, args);
 
@@ -40,7 +41,7 @@ const searchVideo = async (event, value) => {
   });
 
   // Get available video quality
-  const qualityCommand = `yt-dlp -F ${cleanedFromPlaylist} > quality.log`;
+  const qualityCommand = `${command} -F ${cleanedFromPlaylist} > quality.log`;
   const qualityProcess = exec(qualityCommand);
   qualityProcess.stdout.on('data', (data) => {
     console.log(`Quality stdout: ${data}`);

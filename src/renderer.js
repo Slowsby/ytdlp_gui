@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.electron.onVideoQuality((event, qualityArr) => {
-    let opts = ['360', '480', '720', '1080', '1440', '2160'];
+    let opts = ['240', '360', '480', '720', '1080', '1440', '2160'];
     console.log('AAAAAA' + qualityArr);
     if (!qualityArr.some((arr) => arr[0].includes('2160'))) {
       opts = opts.filter((value) => value !== '2160');

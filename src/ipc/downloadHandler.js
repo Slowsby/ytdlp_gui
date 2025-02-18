@@ -1,11 +1,11 @@
 const { exec, spawn } = require('node:child_process');
 const { defaultPath } = require('../utils/dataStore.js');
 const path = require('path');
+const { currentOS } = require('../utils/osCheck.js');
 let intervalId;
 let process;
 let terminated = false;
 let isDownloading = false;
-
 const handleDownload = (event, value, quality) => {
   if (quality === 'quality') {
     setTimeout(() => {
@@ -23,7 +23,7 @@ const handleDownload = (event, value, quality) => {
 
   isDownloading = true;
   console.log('Received input:', value, quality);
-  const command = 'yt-dlp';
+  const command = currentOS() === 'win32' ? 'yt-dlp' : './yt-dlp';
   const args = ['-S', `res:${quality},acodec:m4a`, cleanedFromPlaylist, '--no-mtime', '--force-overwrites', '-o', path.join(defaultPath(), '\\%(title)s [%(id)s].%(ext)s')];
   process = spawn(command, args);
   let cleanedData;
@@ -67,7 +67,11 @@ const forceQuitDownload = (event) => {
     event.sender.send('eta', '');
     terminated = true;
     clearInterval(intervalId);
-    exec('taskkill /F /T /PID ' + process.pid);
+    if (currentOS() === 'win32') {
+      exec('taskkill /F /T /PID ' + process.pid);
+    } else if (currentOS() === 'linux') {
+      exec('kill -9 ' + process.pid);
+    }
     isDownloading = false;
     console.log('Killed yt-dlp');
     setTimeout(() => {
